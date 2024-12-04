@@ -75,7 +75,7 @@ document.getElementById("submit-btn").addEventListener("click", function () {
         .then(async (response) => {
             const result = await response.json();
             if (response.ok) {
-                showPopupAlert("Form submitted successfully! Thanks", "success");
+                showPopupAlert("আপনার কাজ সফলভাবে জমা করা হয়েছে! ধন্যবাদ 🎉🎉", "success");
             } else {
                 console.error("Telegram API Error:", result);
                 showPopupAlert(`Failed: ${result.description}`);
