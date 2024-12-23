@@ -59,7 +59,6 @@ document.getElementById("submit-btn").addEventListener("click", function () {
         return;
     }
 
-    
     const message = `
       New Form Submission:
       - Account Type: ${accountType}
@@ -72,7 +71,7 @@ document.getElementById("submit-btn").addEventListener("click", function () {
       - Google Sheet: ${googleSheet}
     `;
 
-    const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(
+    const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatIdForBot}&text=${encodeURIComponent(
         message
     )}`;
 
@@ -86,19 +85,19 @@ document.getElementById("submit-btn").addEventListener("click", function () {
             const result = await response.json();
             if (response.ok) {
                 showPopupAlert("আপনার কাজ সফলভাবে জমা করা হয়েছে! ধন্যবাদ 🎉🎉", "success");
+                // Permanently disable the button after successful submission
+                submitBtn.innerText = "Submitted";
+                submitBtn.style.backgroundColor = "#ccc";
             } else {
                 console.error("Telegram API Error:", result);
                 showPopupAlert(`Failed: ${result.description}`);
+                submitBtn.disabled = false; // Re-enable the button if submission fails
             }
         })
         .catch((error) => {
             console.error("Network Error:", error);
             showPopupAlert("Failed to send data. Please check your network and try again.");
-        })
-        .finally(() => {
-            // Re-enable the submit button
-            submitBtn.disabled = true;
-            submitBtn.innerText = "Submit";
+            submitBtn.disabled = false; // Re-enable the button if there is a network error
         });
 });
 
