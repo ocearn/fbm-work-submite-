@@ -84,8 +84,20 @@ document.getElementById("submit-btn").addEventListener("click", function () {
         return;
     }
 
-    // ✅ বর্তমান তারিখ ও সময় যুক্ত করা
-    const currentDate = new Date().toLocaleString("en-US", { timeZone: "Asia/Dhaka" });
+
+        // ✅ বর্তমান তারিখ ও সময় যুক্ত করা
+    const options = { 
+    timeZone: "Asia/Dhaka", 
+    day: "2-digit", 
+    month: "2-digit", 
+//    year: "numeric", 
+    hour: "2-digit", 
+    minute: "2-digit", 
+    hour12: true 
+};
+
+const currentDate = new Date().toLocaleString("en-GB", options).replace(",", "");
+
     
     const message = `
       New Form Submission:
