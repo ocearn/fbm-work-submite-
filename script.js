@@ -84,6 +84,9 @@ document.getElementById("submit-btn").addEventListener("click", function () {
         return;
     }
 
+    // ✅ বর্তমান তারিখ ও সময় যুক্ত করা
+    const currentDate = new Date().toLocaleString("en-US", { timeZone: "Asia/Dhaka" });
+    
     const message = `
       New Form Submission:
       - Account Type: ${accountType}
@@ -94,6 +97,7 @@ document.getElementById("submit-btn").addEventListener("click", function () {
       - Tg Username: ${tgUsername}
       - Tg Chat Id: ${tgChatId}
       - Google Sheet: ${googleSheet}
+      - Date & Time: ${currentDate}
     `;
 
     const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatIdForBot}&text=${encodeURIComponent(
