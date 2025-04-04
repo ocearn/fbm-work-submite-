@@ -1,144 +1,98 @@
 <!DOCTYPE html>
-<html lang="bn">
+
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New Update</title>
-  <style>
-    .circles {
-        height: 55vmin;
-        width: 55vmin;
-        position: absolute;
-        margin: 0 auto;
-        top: 40%;
-        left: 50%;
-        transform: translate3D(-50%, -50%, 0);
-    }
-
-    .circle {
-        box-sizing: border-box;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border: 2.5vmin solid transparent;
-        border-radius: 115% 140% 145% 110%/125% 140% 110% 125%;
-        mix-blend-mode: screen;
-    }
-
-    .circle:nth-child(1) {
-        border-color: #DB4437;
-        transform-origin: calc(50% - 0%) 50%;
-        animation: spin1 5.5s linear infinite;
-    }
-
-    .circle:nth-child(2) {
-        border-color: #F4B400;
-        transform-origin: 50% calc(50% + 0%);
-        animation: spin2 5.5s linear infinite;
-    }
-
-    .circle:nth-child(3) {
-        border-color: #4285F4;
-        transform-origin: calc(50% + 0%) 50%;
-        animation: spin3 5.5s linear infinite;
-    }
-
-    .circle:nth-child(4) {
-        border-color: #0F9D58;
-        transform-origin: 50% calc(50% - 0%);
-        animation: spin4 5.5s linear infinite;
-    }
-
-    @keyframes spin1 {
-        0% { transform: rotate(0); }
-        100% { transform: rotate(360deg); }
-    }
-
-    @keyframes spin2 {
-        0% { transform: rotate(72deg); }
-        100% { transform: rotate(-288deg); }
-    }
-
-    @keyframes spin3 {
-        0% { transform: rotate(-144deg); }
-        100% { transform: rotate(216deg); }
-    }
-
-    @keyframes spin4 {
-        0% { transform: rotate(216deg); }
-        100% { transform: rotate(-144deg); }
-    }
-
-    body, html {
-        background-color: black;
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        overflow: hidden;
-        font-family: 'Segoe UI', sans-serif;
-        color: white;
-        text-align: center;
-    }
-
-    .title {
-        position: absolute;
-        top: 65%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-    .title h1 {
-        margin: 0;
-        font-size: 2.2em;
-        color: #ffffff;
-    }
-
-    .title p {
-        margin-top: 10px;
-        font-size: 1em;
-        color: #cccccc;
-        max-width: 90%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .warning {
-        color: white;
-        font-family: sans-serif;
-        text-align: center;
-        display: inline-block;
-        padding: 50%;
-        width: 80%;
-        top: 50%;
-        left: 50%;
-        position: absolute;
-        transform: translate3D(-50%, -50%, 0);
-    }
-
-    @supports (mix-blend-mode: screen) {
-        .warning {
-            display: none;
-        }
-    }
-  </style>
+  <title>Submit Form</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div class="form-container">
+    <h2>Work Submit --</h2>
+    
+    <!-- First Set -->
+    <div class="form-group">
+      <div class="form-item">
+        <label for="account-type">Account Type:</label>
+        <select id="account-type" required>
+          <option disabled selected>Select</option>
+          <option>Facebook</option>
+          <option disabled>Gmail</option>
+          <option disabled>Telegram</option>
+          <option disabled>Whatsapp</option>
+          <option disabled>Inatagram</option>
+          <option disabled>Tweeter</option>
+        </select>
+      </div>
+      <div class="form-item">
+        <label for="mail-box">Mail Box:</label>
+        <select id="mail-box" required>
+          <option disabled selected>Select</option>
+          <option>1Sec Mail</option>
+          <option>Temp Mail</option>
+          <option>Any Mail</option>
+        </select>
+      </div>
+    </div>
 
-  <div class="circles">
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
+    <!-- Second Set -->
+    <div class="form-group">
+      <div class="form-item">
+        <label for="2fa-cookie">2FA-Cook</label>
+        <select id="2fa-cookie">
+          <option disabled selected>Select</option>
+          <option value="2FA">2FA</option>
+          <option value="Cookies">Cookies</option>
+        </select>
+      </div>
+      <div class="form-item">
+        <label for="fd-tpe">FD:</label>
+        <select id="fd-type">
+          <option disabled selected>Select</option>
+          <option value="0FD">0+Fd</option>
+          <option value="30FD">30+Fd</option>
+        </select>
+      </div>
+      <div class="form-item">
+        <label for="ttl-id">Total Id:</label>
+        <input type="text" id="ttl-id" placeholder="Total Id" maxlength="4">
+      </div>
+    </div>
+
+    <!-- Third Set -->
+    <div class="form-group">
+      <div class="form-item">
+        <label for="tg-username">Tg Username:</label>
+        <input type="text" id="tg-username" placeholder="Username">
+      </div>
+      <div class="form-item">
+        <label for="tg-chat-id">Tg Chat Id:</label>
+        <input type="text" id="tg-chat-id" placeholder="Chat ID" maxlength="10">
+      </div>
+    </div>
+
+    <!-- Single Input -->
+    <div class="form-single">
+      <label for="google-sheet">Google Sheet Link:</label>
+      <input type="url" id="google-sheet" placeholder="Paste Link Here">
+    </div>
+
+    <button type="submit" id="submit-btn">Submit</button>
   </div>
+  
+</div>
 
-  <div class="title">
-    <h1>UPDATING...!</h1>
-    <p> নতুন আপডেট শুরু হয়েছে...! </p>
-  </div>
 
-  <div class="warning">
-     😢
-  </div>
+<!-- ✅ কাস্টম পপ-আপ -->
+<div id="custom-alert" class="hidden">
+    <div class="alert-box">
+        <p id="alert-message"></p>
+        <button id="alert-ok">OK</button>
+    </div>
+</div>
 
+  <script src="script.js"></script>
 </body>
 </html>
