@@ -136,9 +136,17 @@ document.getElementById("submit-btn").addEventListener("click", function () {
     fetch(telegramUrl)
         .then(async (response) => {
             const result = await response.json();
+
+            
             if (response.ok) {
-                window.location.href = "success.html";
-            } else {
+    sendReadyMadeMessageToUser(tgChatId); // ✅ ইউজারের দেওয়া চ্যাট আইডিতে মিডিয়া পাঠাও
+
+    setTimeout(() => {
+        window.location.href = "success.html";
+    }, 1000);
+            }
+            
+            else {
                 console.error("Telegram API Error:", result);
                 showAlert(`Failed: ${result.description}`);
                 submitBtn.disabled = false;
@@ -166,3 +174,66 @@ function showAlert(message) {
 document.getElementById("alert-ok").addEventListener("click", function () {
     document.getElementById("custom-alert").style.display = "none";
 });
+
+
+
+
+
+
+function sendReadyMadeMessageToUser(tgChatId) {
+    const botToken = "7673657711:AAHVLLBUQUyW4de_qrZsy2L3Hcj3Siav3kY";
+
+// আজকের তারিখ ও সময় (সাল বাদে)
+const today = new Date().toLocaleString("en-GB", {
+    timeZone: "Asia/Dhaka",
+    day: "2-digit",
+    month: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true
+});
+
+    // মিডিয়া ফাইলের লিঙ্ক (তোমার সার্ভারে থাকা লাগবে)
+    const mediaUrl = "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj7TresD68j1z7kGLxwCZwyxX9D2tg_iC5tuUQOnbPpOwTNcRICz91oFLCLP3bzBhIzXKt7sGDSAZC5HvpKvcFjaHhefNIndTl6uGgw7BUh5aN8XD1d2YJs0wol1tfWDIidivg4Fjls0vKLJF-91rPLrEYdJ7v_ZN3VHg2_Y8FQ12a1el9232IgTimTZD0V/s1280/wssfl.png"; // ইমেজ বা ভিডিও লিংক
+
+    const caption = `Submit Successful 💐 \n\nআপনার কাজ সফল ভাবে জমা করা হয়েছে। \n\nআপনার কাজের রিপোর্ট জানতে অবশ্যই আমাদের গ্রূপে যুক্ত থাকুন এবং যেকোনো সমস্যার সমাধান নিন।   \n\nতারিখ: ${today}`;
+
+    const replyMarkup = {
+        inline_keyboard: [[
+            {
+                text: "Join Group",
+                url: "https://t.me/fbmMarket" // তোমার টেলিগ্রাম সাপোর্ট লিংক
+            }
+        ]]
+    };
+
+    // API URL
+    const apiUrl = `https://api.telegram.org/bot${botToken}/sendPhoto`; // যদি ভিডিও হয়, তাহলে sendVideo
+
+    // ফর্ম ডেটা তৈরি
+    const formData = {
+        chat_id: tgChatId,
+        photo: mediaUrl, // যদি ভিডিও হয়, তাহলে "video" key দিতে হবে
+        caption: caption,
+        reply_markup: JSON.stringify(replyMarkup),
+        parse_mode: "HTML"
+    };
+
+    // ফেচ রিকুয়েস্ট
+    fetch(apiUrl, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (!data.ok) {
+            console.error("Failed to send media message:", data);
+        }
+    })
+    .catch(err => {
+        console.error("Error sending media message:", err);
+    });
+}
